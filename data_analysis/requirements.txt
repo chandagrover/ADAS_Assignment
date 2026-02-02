@@ -1,8 +1,7 @@
 pandas
 fastparquet
 matplotlib
-seaboarn
+seaborn
 scikit-learn
 streamlit
 plotly
-

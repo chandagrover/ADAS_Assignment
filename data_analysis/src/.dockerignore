@@ -1,0 +1,9 @@
+/home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/ADAS_Assignment/venv
+data_analysis/src/__pycache__
+*.pyc
+.git
+analysis_output
+anomaly_output
+bdd_objects.parquet
+processed_objects.parquet
+data_bdd/

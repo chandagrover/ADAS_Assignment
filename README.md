@@ -1,4 +1,24 @@
 # ADAS_Assignment
+
+## 1. Data Analysis Container
+
+### Build & Run
+
+```bash
+# Build
+docker build -t bdd-analysis -f data_analysis/Dockerfile ./data_analysis
+
+# Run (mount your data & output folder)
+docker run --rm \
+  -v /home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/ADAS_Assignment/data_bdd:/data:ro \
+  -v $(pwd)/analysis_output:/app/analysis_output \
+  bdd-analysis \
+    --labels-train /data/labels/bdd100k_labels_images_train.json \
+    --labels-val   /data/labels/bdd100k_labels_images_val.json \
+    --output-dir   /app/analysis_output
+
+
+
 ### 1. Data Analysis
 #### Parsing Data
 python data_analysis/src/parse_bdd.py

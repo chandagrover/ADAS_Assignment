@@ -4,19 +4,35 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from pathlib import Path
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="BDD100K Object Detection Dashboard")
+    parser.add_argument("--data", default="/output/processed_objects.parquet",
+                        help="Path to the processed Parquet file (inside container)")
+    return parser.parse_args()
+
+args = parse_args()
 
 st.set_page_config(page_title="BDD100K Data Explorer", layout="wide")
 
+# @st.cache_data
+# def load_data(parquet_path: str):
+#     return pd.read_parquet(parquet_path)
+
 @st.cache_data
-def load_data(parquet_path: str):
-    return pd.read_parquet(parquet_path)
+def load_data(path: str):
+    if not Path(path).exists():
+        st.error(f"Cannot load data file: {path}\nMake sure you ran the parser/analyze step first and the file exists in the mounted output folder.")
+        st.stop()
+    return pd.read_parquet(path)
 
 # ── Paths (adjust if needed or use st.file_uploader)
 # PARQUET = "bdd_objects.parquet"   # assume you saved it from parser earlier
-PARQUET = "processed_objects.parquet"   # assume you saved it from parser earlier
+# PARQUET = "/home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/ADAS_Assignment/anomaly_output/objs/processed_objects.parquet"   # assume you saved it from parser earlier
 
 try:
-    df = load_data(PARQUET)
+    df = load_data(args.data)
 except Exception:
     st.error(f"Cannot load {PARQUET}. Run parser first and save to parquet.")
     st.stop()

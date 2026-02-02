@@ -20,7 +20,7 @@ from parse_bdd import BDDParser, DETECTION_CLASSES, combine_parsers
 SMALL_AREA_PX = 400
 CROWD_THRESHOLD = 35
 
-OUTPUT_SUBDIRS = {"plots": "plots", "stats": "stats"}
+OUTPUT_SUBDIRS = {"plots": "plots", "stats": "stats", "objs": "objs"}
 
 
 """Run with:
@@ -45,7 +45,7 @@ def savefig(fig, name, out_dir):
     plt.close(fig)
 
 
-def detect_anomalies(df: pd.DataFrame) -> pd.DataFrame:
+def detect_anomalies(df: pd.DataFrame, out_dirs: dict) -> pd.DataFrame:
     """Isolation Forest on bounding box features + occlusion/truncation."""
     # Add derived features directly to df
     df = df.copy()  # safety (optional)
@@ -61,11 +61,13 @@ def detect_anomalies(df: pd.DataFrame) -> pd.DataFrame:
     iso = IsolationForest(contamination=0.015, random_state=42, n_estimators=120)
     df["anomaly_score"] = iso.fit_predict(X)  # -1 = anomaly, 1 = normal
     df["is_anomaly"] = df["anomaly_score"] == -1
-    df.to_parquet("processed_objects.parquet", index=False)
+    df.to_parquet(out_dirs['objs']/"processed_objects.parquet", index=False)
+    print(f"objs → {out_dirs['objs']}")
+    
 
     return df
 
-
+sss
 def analyze_and_visualize(df: pd.DataFrame, out_dirs: dict) -> dict:
     findings = {}
 
@@ -174,7 +176,7 @@ def main():
 
     df = combine_parsers(args.labels_train, args.labels_val)
 
-    df = detect_anomalies(df)               # ← added
+    df = detect_anomalies(df, out_dirs)               # ← added
 
     findings = analyze_and_visualize(df, out_dirs)
 
