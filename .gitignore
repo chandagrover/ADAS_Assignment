@@ -6,7 +6,7 @@ __pycache__/*.pyc
 data_analysis/src/__pycache__/*.pyc
 data_bdd/
 analysis_output/
-analysis2_output/
+anomaly_output/
 venv/
 bdd_objects.parquet
 processed_objects.parquet

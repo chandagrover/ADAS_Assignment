@@ -24,10 +24,10 @@ OUTPUT_SUBDIRS = {"plots": "plots", "stats": "stats"}
 
 
 """Run with:
-    python src/analysis2.py \
-    --labels-train /home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/assignment/data_bdd/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_train.json \
-    --labels-val /home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/assignment/data_bdd/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_val.json \
-    --output-dir ./analysis2_output
+    python data_analysis/src/anomaly.py \
+    --labels-train /home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/ADAS_Assignment/data_bdd/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_train.json \
+    --labels-val /home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/ADAS_Assignment/data_bdd/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_val.json \
+    --output-dir ./anomaly_output
 """
 
 def setup_dirs(base: Path) -> dict:
@@ -166,7 +166,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--labels-train", required=True)
     parser.add_argument("--labels-val", required=True)
-    parser.add_argument("--output-dir", default="./analysis2_output")
+    parser.add_argument("--output-dir", default="./anomaly_output")
     args = parser.parse_args()
 
     out_base = Path(args.output_dir).resolve()

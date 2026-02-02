@@ -115,8 +115,8 @@ def combine_parsers(train_json: str | Path, val_json: str | Path) -> pd.DataFram
 
 if __name__ == "__main__":
     # Example paths — adjust to your folder structure
-    train_path = "/home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/assignment/data_bdd/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_train.json"
-    val_path   = "/home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/assignment/data_bdd/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_val.json"
+    train_path = "/home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/ADAS_Assignment/data_bdd/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_train.json"
+    val_path   = "/home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/ADAS_Assignment/data_bdd/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_val.json"
 
     df_all = combine_parsers(train_path, val_path)
 
