@@ -30,7 +30,7 @@ RUN pip install --no-cache-dir -U pip && \
 COPY src/ ./src/
 
 # ── Create output directory (will be mounted anyway, but good practice)
-RUN mkdir -p /output /data
+RUN mkdir -p /analysis_output /anomaly_output /data /objs
 
 # ── Expose Streamlit default port
 EXPOSE 8501

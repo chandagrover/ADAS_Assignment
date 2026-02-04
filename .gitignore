@@ -1,12 +1,20 @@
 # Python cache
 __pycache__/*.pyc
+model/__pycache__/*.pyc
+data_snalysis/__pycache__/*.pyc
+data_analysis/src/__pycache__/*.pyc
 # Data / archives
 *.zip
 
-data_analysis/src/__pycache__/*.pyc
 data_bdd/
 analysis_output/
 anomaly_output/
-venv/
+vemv/
 bdd_objects.parquet
 processed_objects.parquet
+cmds.txt
+runs/
+model/*.pt
+yolo_converted/
+
+

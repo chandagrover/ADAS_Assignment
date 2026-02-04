@@ -5,3 +5,6 @@ seaborn
 scikit-learn
 streamlit
 plotly
+ultralytics
+wheel
+fiftyone
