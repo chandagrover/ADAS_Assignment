@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
+import argparse
 
 
 DETECTION_CLASSES = {
@@ -114,15 +115,34 @@ def combine_parsers(train_json: str | Path, val_json: str | Path) -> pd.DataFram
 # ────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    # Example paths — adjust to your folder structure
-    train_path = "../../data_bdd/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_train.json"
-    val_path   = "../../data_bdd/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_val.json"
+    parser = argparse.ArgumentParser(description="Parse BDD100K detection labels")
+    parser.add_argument("--labels-train", type=str, required=True)
+    parser.add_argument("--labels-val", type=str, required=True)
+    parser.add_argument("--output", type=str, required=True)
 
-    df_all = combine_parsers(train_path, val_path)
+    args = parser.parse_args()
+
+    df_all = combine_parsers(args.labels_train, args.labels_val)
 
     print("Total objects:", len(df_all))
     print("\nClass distribution:\n", df_all["category"].value_counts())
 
-    # Save for later analysis / visualization
-    df_all.to_parquet("bdd_objects.parquet", index=False)
-    # or df_all.to_csv("bdd_objects.csv", index=False)
+    output_path = Path(args.output)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    df_all.to_parquet(output_path, index=False)
+
+
+# if __name__ == "__main__":
+#     # Example paths — adjust to your folder structure
+#     train_path = "/data/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_train.json"
+#     val_path   = "/data/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_val.json"
+
+#     df_all = combine_parsers(train_path, val_path)
+
+#     print("Total objects:", len(df_all))
+#     print("\nClass distribution:\n", df_all["category"].value_counts())
+
+#     # Save for later analysis / visualization
+#     df_all.to_parquet("bdd_objects.parquet", index=False)
+#     # or df_all.to_csv("bdd_objects.csv", index=False)

@@ -67,7 +67,6 @@ def detect_anomalies(df: pd.DataFrame, out_dirs: dict) -> pd.DataFrame:
 
     return df
 
-sss
 def analyze_and_visualize(df: pd.DataFrame, out_dirs: dict) -> dict:
     findings = {}
 
