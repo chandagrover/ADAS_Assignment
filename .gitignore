@@ -4,23 +4,23 @@ model/evaluate/__pycache__/*.pyc
 model/Dashboard/__pycache__/*.pyc
 data_snalysis/__pycache__/*.pyc
 data_analysis/src/__pycache__/*.pyc
+
 # Data / archives
 *.zip
 data_bdd/
 
 #outputs
-analysis_output/
-anomaly_output/
-evaluate_output/
-shared_output/
+outputs/analysis_output/
+outputs/anomaly_output/
+outputs/evaluate_output/
+outputs/shared_output/
+outputs/runs
+
+archives/
+
+cmds.txt
+model/*.pt
 archives/
 vemv/
-bdd_objects.parquet
-processed_objects.parquet
-cmds.txt
-runs/
-model/*.pt
-yolo_converted/
-archives/
 
 

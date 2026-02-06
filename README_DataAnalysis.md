@@ -22,8 +22,8 @@ docker build -t bdd-analysis .
 
 # Example paths – adjust to your machine
 DATA_DIR=$(pwd)/../data_bdd/
-ANALYSIS_DIR=$(pwd)/../analysis_output/
-ANOMALY_DIR=$(pwd)/../anomaly_output/
+ANALYSIS_DIR=$(pwd)/../outputs/analysis_output/
+ANOMALY_DIR=$(pwd)/../outputs/anomaly_output/
 
 sudo docker run --rm -it \
   -v "$DATA_DIR":/data:ro \

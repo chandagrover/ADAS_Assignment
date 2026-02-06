@@ -13,6 +13,7 @@ cd model
 docker build -t bdd-eval .
 
 
+
 # Example paths – adjust to your machine
 DATA_DIR=$(pwd)/../data_bdd/
 OUTPUT_DIR=$(pwd)/../
@@ -36,32 +37,36 @@ sudo docker run --rm -it \
   bdd-eval \
   python evaluate/evaluate_yolo11m.py
 
-# Example – adjust paths to match your host machine
-sudo docker run --rm \
+sudo docker run --rm -it \
   -v $DATA_DIR:/data:ro \
-  -v $ANALYSIS_DIR:/analysis_output \
-  bdd-analysis \
-  python src/analysis.py \
-    --labels-train /data/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_train.json \
-    --labels-val   /data/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_val.json \
-    --output-dir   /analysis_output
+  -v $OUTPUT_DIR:/workspace \
+  bdd-eval \
+  python evaluate/error_analysis.py
 
-sudo docker run --rm \
+sudo docker run --rm -it \
   -v $DATA_DIR:/data:ro \
-  -v $ANOMALY_DIR:/anomaly_output \
-  bdd-analysis \
-    python src/anomaly.py \
-    --labels-train /data/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_train.json \
-    --labels-val /data/bdd100k_labels_release/bdd100k/labels/bdd100k_labels_images_val.json \
-    --output-dir /anomaly_output
+  -v $OUTPUT_DIR:/workspace \
+  bdd-eval \
+  python evaluate/visualize_fiftyone.py
 
-sudo docker run --rm -it -p 8501:8501 \
-  -v $(pwd)/../anomaly_output/objs:/objs \
-  bdd-analysis \
-  streamlit run src/dashboard.py \
-    --server.port=8501 \
-    --server.address=0.0.0.0 \
-    --server.headless=true \
-    -- \
-    --data /objs/processed_objects.parquet
+
+sudo docker run --rm -it \
+  -v $DATA_DIR:/data:ro \
+  -v $OUTPUT_DIR:/workspace \
+  -e FIFTYONE_DATABASE_DIR=/workspace/fiftyone_db
+  bdd-eval \
+  python evaluate/visualize_fiftyone.py
+
+
+sudo docker run --rm -it \
+  -p 8501:8501 \
+  -v $OUTPUT_DIR:/workspace \
+  bdd-eval \
+  streamlit Dashboard/app.py --server.port=8501 --server.address=0.0.0.0
+
+sudo docker run --rm -it \
+  -v $DATA_DIR:/data:ro \
+  -v $OUTPUT_DIR:/workspace \
+  bdd-eval \
+  python training/train_one_epoch.py
 
