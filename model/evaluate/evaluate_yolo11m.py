@@ -1,12 +1,14 @@
 from ultralytics import YOLO
 from pathlib import Path
 import json
-
+import torch
 # Paths
 MODEL_PATH = "yolo11m.pt"
-DATA_YAML = "/home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/ADAS_Assignment/model/yolo_converted/bdd100k_ultralytics.yaml"
-PROJECT_DIR = "/home/phdcs2/Hard_Disk/Projects/Challenges/Bosch/ADAS_Assignment/model/runs/"
+DATA_YAML = "/workspace/outputs/evaluate_output/yolo_converted/bdd100k_ultralytics.yaml"
+PROJECT_DIR = "/workspace/outputs/runs/"
 NAME = "yolo11m_eval"
+
+device = 0 if torch.cuda.is_available() else "cpu"
 
 def main():
     model = YOLO(MODEL_PATH)
@@ -17,7 +19,7 @@ def main():
         batch=16,
         conf=0.001,
         iou=0.6,
-        device=0,
+        device=device,
         project=PROJECT_DIR,
         name=NAME,
         save_json=True,

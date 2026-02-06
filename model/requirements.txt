@@ -1,0 +1,14 @@
+tqdm
+ultralytics
+opencv-python
+pyyaml
+wheel
+fiftyone
+torch
+torchvision
+pandas
+numpy
+scikit-learn
+streamlit
+matplotlib
+seaborn

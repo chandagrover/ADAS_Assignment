@@ -126,6 +126,7 @@ def main():
     categories = get_categories_from_json(json_files)
     print(f"\nDetected categories: {categories}")
 
+    print("OUTPUT_DATASET_DIR=", OUTPUT_DATASET_DIR)
     yolo_files_dir = OUTPUT_DATASET_DIR / "yolo_files"
     yolo_files_dir.mkdir(parents=True, exist_ok=True)
     split_txts = {}
