@@ -2,7 +2,7 @@ import json
 import pandas as pd
 from pathlib import Path
 
-PRED_JSON = "runs/yolo11m_eval/predictions.json"
+PRED_JSON = "/workspace/outputs/runs/yolo11m_eval/predictions.json"
 
 def load_predictions(pred_file):
     with open(pred_file, "r") as f:
@@ -24,7 +24,7 @@ def main():
     small = df[df["area"] < 32 * 32]
     print(small["category_id"].value_counts())
 
-    df.to_csv("runs/yolo11m_eval/predictions_analysis.csv", index=False)
+    df.to_csv("/workspace/outputs/runs/yolo11m_eval/predictions_analysis.csv", index=False)
     print("Saved predictions_analysis.csv")
 
 

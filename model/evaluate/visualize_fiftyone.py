@@ -2,9 +2,9 @@ import fiftyone as fo
 import fiftyone.utils.yolo as fouy
 from ultralytics import YOLO
 
-DATASET_NAME = "/app/yolo11m_eval"
-YOLO_DATASET_DIR = "/app/yolo_converted"
-MODEL_PATH = "/app/yolo11m.pt"
+DATASET_NAME = "/workspace/outputs/runs/yolo11m_eval"
+YOLO_DATASET_DIR = "/workspace/outputs/yolo_converted"
+MODEL_PATH = "yolo11m.pt"
 
 def main():
     # # Load dataset
