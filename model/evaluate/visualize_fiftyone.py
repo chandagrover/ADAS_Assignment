@@ -27,7 +27,7 @@ def main():
 
 
     # Run inference and store predictions
-    model = YOLO(MODEL_PATH)
+    # model = YOLO(MODEL_PATH)
     dataset.apply_model(
         model,
         label_field="predictions",
@@ -43,7 +43,8 @@ def main():
     )
 
     # Launch FiftyOne UI
-    session = fo.launch_app(dataset)
+    # session = fo.launch_app(dataset)
+    session = fo.launch_app(dataset, address="0.0.0.0", port=5151)
     session.wait()
 
 

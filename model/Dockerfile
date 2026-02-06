@@ -1,4 +1,5 @@
 FROM python:3.10-slim
+# FROM pytorch/pytorch:2.1.0-cpu
 # FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-
 # FROM pytorch/pytorch:2.1.0-cpu-py3.10
 # FROM --platform=linux/amd64 pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
@@ -8,12 +9,24 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV FIFTYONE_DISABLE_SERVICES=1
 
 # System deps
+# RUN apt-get update && apt-get install -y \
+#     git \
+#     curl \
+#     libgl1 \
+#     libglib2.0-0 \
+#     && rm -rf /var/lib/apt/lists/*
+
 RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libgl1 \
-    libglib2.0-0 \
+    libcurl4 \
+    libgnutls30 \
     && rm -rf /var/lib/apt/lists/*
+
+# RUN apt-get update && apt-get install -y \
+#     libgl1-mesa-glx \
+#     libxcb1 \
+#     libx11-6 \
+#     libglib2.0-0 \
+#     && rm -rf /var/lib/apt/lists/*
 
 # WORKDIR /app
 

@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 st.set_page_config(layout="wide")
 st.title("BDD100K – YOLO11m Evaluation Dashboard")
 
-RUN_DIR = Path("runs/bdd100k/yolo11m_eval")
+RUN_DIR = Path("/workspace/outputs/runs/yolo11m_eval")
 
 # ---- Metrics ----
 st.header("Quantitative Metrics")
