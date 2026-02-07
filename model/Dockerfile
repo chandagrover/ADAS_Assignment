@@ -9,17 +9,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV FIFTYONE_DISABLE_SERVICES=1
 
 # System deps
-# RUN apt-get update && apt-get install -y \
-#     git \
-#     curl \
-#     libgl1 \
-#     libglib2.0-0 \
-#     && rm -rf /var/lib/apt/lists/*
-
 RUN apt-get update && apt-get install -y \
-    libcurl4 \
-    libgnutls30 \
+    git \
+    curl \
+    libgl1 \
+    libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
+
+# RUN apt-get update && apt-get install -y \
+#     libcurl4 \
+#     libgnutls30 \
+#     && rm -rf /var/lib/apt/lists/*
 
 # RUN apt-get update && apt-get install -y \
 #     libgl1-mesa-glx \
