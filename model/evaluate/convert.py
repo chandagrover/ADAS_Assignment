@@ -89,6 +89,7 @@ def generate_yaml(output_root, yaml_path, categories, use_ultralytics=True):
         train: {train_path}
         val: {val_path}
         test: {test_path}
+        nc: 10
         names:
         """
     for k, v in sorted(categories.items(), key=lambda x: x[1]):

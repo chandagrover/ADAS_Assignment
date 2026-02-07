@@ -3,6 +3,7 @@ path: /workspace/outputs/evaluate_output/yolo_converted
 train: images/train
 val: images/val
 test: images/test
+nc: 10
 names:
   0: bike
   1: bus
