@@ -14,11 +14,12 @@ outputs/analysis_output/
 outputs/anomaly_output/
 outputs/evaluate_output/
 outputs/shared_output/
-outputs/runs
+outputs/runs/
+shared_output/
 
 archives/
 
-cmds.txt
+
 model/*.pt
 archives/
 vemv/

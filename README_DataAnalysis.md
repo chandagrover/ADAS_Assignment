@@ -54,7 +54,7 @@ sudo docker run --rm \
     --output-dir /anomaly_output
 
 sudo docker run --rm -it -p 8501:8501 \
-  -v $(pwd)/../anomaly_output/objs:/objs \
+  -v $(pwd)/../outputs/anomaly_output/objs:/objs \
   bdd-analysis \
   streamlit run src/dashboard.py \
     --server.port=8501 \

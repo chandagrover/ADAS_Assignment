@@ -8,7 +8,7 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser(description="BDD100K Object Detection Dashboard")
-    parser.add_argument("--data", default="/output/processed_objects.parquet",
+    parser.add_argument("--data", default="/objs/processed_objects.parquet",
                         help="Path to the processed Parquet file (inside container)")
     return parser.parse_args()
 
