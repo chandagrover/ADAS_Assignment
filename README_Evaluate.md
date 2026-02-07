@@ -51,18 +51,19 @@ sudo docker run --rm -it \
 
 
 sudo docker run --rm -it \
+  -p 8501:8501 \
+  -v $OUTPUT_DIR:/workspace \
+  bdd-eval \
+  streamlit run /workspace/model/Dashboard/app.py \
+  --server.port=8501 \
+  --server.address=0.0.0.0
+
+sudo docker run --rm -it \
   -v $DATA_DIR:/data:ro \
   -v $OUTPUT_DIR:/workspace \
   -e FIFTYONE_DATABASE_DIR=/workspace/fiftyone_db \
   bdd-eval \
   python evaluate/visualize_fiftyone.py
-
-
-sudo docker run --rm -it \
-  -p 8501:8501 \
-  -v $OUTPUT_DIR:/workspace \
-  bdd-eval \
-  streamlit Dashboard/app.py --server.port=8501 --server.address=0.0.0.0
 
 #Bonus
 sudo docker run --rm -it \
