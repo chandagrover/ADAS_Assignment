@@ -47,7 +47,7 @@ sudo docker run --rm -it \
   -v $DATA_DIR:/data:ro \
   -v $OUTPUT_DIR:/workspace \
   bdd-eval \
-  python evaluate/visualize_fiftyone.py
+  python evaluate/cluster_failures.py
 
 
 sudo docker run --rm -it \
@@ -65,6 +65,11 @@ sudo docker run --rm -it \
   bdd-eval \
   python evaluate/visualize_fiftyone.py
 
+# sudo docker run --rm -it \
+#   -v $DATA_DIR:/data:ro \
+#   -v $OUTPUT_DIR:/workspace \
+#   bdd-eval \
+#   python evaluate/visualize_fiftyone.py
 #Bonus
 sudo docker run --rm -it \
   -v $DATA_DIR:/data:ro \

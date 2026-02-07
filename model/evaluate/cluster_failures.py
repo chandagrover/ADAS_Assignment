@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.cluster import KMeans
 
-CSV_PATH = "runs/yolo11m_eval/predictions_analysis.csv"
+CSV_PATH = "/workspace/outputs/evaluate_output/runs/yolo11m_eval/predictions_analysis.csv"
 
 def main():
     df = pd.read_csv(CSV_PATH)
@@ -30,7 +30,7 @@ def main():
 
     # Save for report / dashboard
     summary.to_csv(
-        "runs/yolo11m_eval/cluster_summary.csv",
+        "/workspace/outputs/evaluate_output/runs//yolo11m_eval/cluster_summary.csv",
         index=False
     )
 
